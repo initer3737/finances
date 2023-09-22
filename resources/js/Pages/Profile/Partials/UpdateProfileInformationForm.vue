@@ -15,6 +15,12 @@ const user = usePage().props.auth.user;
 const form = useForm({
     name: user.name,
     email: user.email,
+    bio: user.bio,
+    avatar: user.avatar,
+    links-1: user.links-1,
+    links-2: user.links-2,
+    links-3: user.links-3,
+    links-4: user.links-4,
 });
 </script>
 
@@ -58,6 +64,21 @@ const form = useForm({
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+
+            <div>
+                <InputLabel for="bio" value="bio" />
+
+                <TextInput
+                    id="bio"
+                    type="bio"
+                    class="mt-1 block w-full"
+                    v-model="form.bio"
+                    required
+                    autocomplete="username"
+                />
+
+                <InputError class="mt-2" :message="form.errors.bio" />
             </div>
 
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
