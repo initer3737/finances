@@ -5,7 +5,7 @@ use App\Http\Controllers\FinanceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +36,35 @@ Route::get('/informatsiya', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+        $users=User::with('Finance')->get()->map(function($query){
+                return [
+                        "users"=>[
+                            'id'=>$query->id,
+                            'name'=>$query->name,
+                            'bio'=>$query->bio,
+                            'avatar'=>$query->avatar,
+                            'email'=>$query->email,
+                            'links_1'=>$query->links_1,
+                            'links_2'=>$query->links_2,
+                            'links_3'=>$query->links_3,
+                            'links_4'=>$query->links_4,
+                            'created_at'=>$query->created_at,
+                            'updated_at'=>$query->updated_at,
+                        ],   
+                        "finances"=>[
+                                'id'=>$query->finance->id,
+                                'amount'=>$query->amount,
+                                'keterangan'=>$query->keterangan,
+                                'type'=>$query->type,
+                                'created_at'=>$query->created_at,
+                                'updated_at'=>$query->updated_at,
+                            ]
+            ];
+        });
+         //kesimpulan by default relasinya menggunakkan left join sebab table kiri datanya akan ditampilkan semua
+        //$users=User::with('Finance')->get();
+    return Inertia::render('Dashboard',["users"=>$users]);
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

@@ -40,7 +40,7 @@ const form = useForm({
 
             <p class="mt-1 text-sm text-gray-600">
                 Update your account's profile information and email address.
-                {{user.}}
+                {{user}}
             </p>
         </header>
 

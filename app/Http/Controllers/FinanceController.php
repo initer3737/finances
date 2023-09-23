@@ -46,7 +46,7 @@ class FinanceController extends Controller
                 $data['saldo']=$totalmenerimaSql - $totalBayarSql;
                 $data['keterangan']=Finance::select('keterangan')->where('user_id',Auth::user()->id)->get();
                 // $data['finance']=FinanceResources::collection(Finance::with('User')->get());;
-
+                        //kesimpulan by default relasinya menggunakkan left join sebab table kiri datanya akan ditampilkan semua
                 $data['finance']=Finance::with('User')->get()->map(function($query){
                         return [
                             'id'=>$query->id,

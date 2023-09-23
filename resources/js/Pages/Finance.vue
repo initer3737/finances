@@ -55,15 +55,15 @@ const is_empty=(e:any)=>e === null ?true:false;
         <Link href="/tambah" class="btn-actions bg-blue-600">tambahkan transaksi</Link>
     </h2>
 </div>
-        <h3 :class="`text-center py-4 text-xl`">tambahkan data</h3>
-    <table  :class="` m-auto tabel-data border-separate border-spacing-2 border border-blue-400`">
+        <h3 :class="`${finance?.length!! > 0?'hidden':''} text-center py-4 text-xl`">tambahkan data</h3>
+    <table  :class="`${finance?.length!! > 0?'':'hidden'} m-auto tabel-data border-separate border-spacing-2 border border-blue-400`">
         <thead>
             <tr>
                  <th class="" colspan="1">no</th>
                  <th class="text-rose-600">membayar</th>
                  <th class="text-green-600">menerima</th>
                  <th>keterangan</th>
-                 <th>actions {{ finance }}</th>
+                 <th>actions </th>
             </tr>
         </thead>
         <tbody>
