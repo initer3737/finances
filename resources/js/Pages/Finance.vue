@@ -10,6 +10,9 @@ const Udalit=(id:number)=>{
         },1000)
    }
 }
+
+const is_empty=(e:any)=>e === null ?true:false;
+
         enum TType{
             membayar,
             menerima
@@ -52,14 +55,15 @@ const Udalit=(id:number)=>{
         <Link href="/tambah" class="btn-actions bg-blue-600">tambahkan transaksi</Link>
     </h2>
 </div>
-    <table  class="m-auto tabel-data border-separate border-spacing-2 border border-blue-400">
+        <h3 :class="`text-center py-4 text-xl`">tambahkan data</h3>
+    <table  :class="` m-auto tabel-data border-separate border-spacing-2 border border-blue-400`">
         <thead>
             <tr>
                  <th class="" colspan="1">no</th>
                  <th class="text-rose-600">membayar</th>
                  <th class="text-green-600">menerima</th>
                  <th>keterangan</th>
-                 <th>actions</th>
+                 <th>actions {{ finance }}</th>
             </tr>
         </thead>
         <tbody>

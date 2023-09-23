@@ -45,7 +45,31 @@ class FinanceController extends Controller
                 $data['total_menerima']=$totalmenerimaSql;
                 $data['saldo']=$totalmenerimaSql - $totalBayarSql;
                 $data['keterangan']=Finance::select('keterangan')->where('user_id',Auth::user()->id)->get();
-                $data['finance']=Finance::get();;
+                // $data['finance']=FinanceResources::collection(Finance::with('User')->get());;
+
+                $data['finance']=Finance::with('User')->get()->map(function($query){
+                        return [
+                            'id'=>$query->id,
+                            'amount'=>$query->amount,
+                            'keterangan'=>$query->keterangan,
+                            'type'=>$query->type,
+                            'created_at'=>$query->created_at,
+                            'updated_at'=>$query->updated_at,
+                                "users"=>[
+                                    'id'=>$query->user->id,
+                                    'name'=>$query->user->name,
+                                    'bio'=>$query->user->bio,
+                                    'avatar'=>$query->user->avatar,
+                                    'email'=>$query->user->email,
+                                    'links_1'=>$query->user->links_1,
+                                    'links_2'=>$query->user->links_2,
+                                    'links_3'=>$query->user->links_3,
+                                    'links_4'=>$query->user->links_4,
+                                    'created_at'=>$query->user->created_at,
+                                    'updated_at'=>$query->user->updated_at,
+                                ]
+                        ];
+                });
         return Inertia::render('Finance',$data);
     }
 

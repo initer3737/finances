@@ -5,22 +5,31 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
-defineProps<{
-    mustVerifyEmail?: Boolean;
-    status?: String;
-}>();
+type TData={
+    bio:string,
+    avatar:string,
+    links_1:string,
+    links_2:string,
+    links_3:string,
+    links_4:string,
+}
+const {mustVerifyEmail,status,data}=defineProps<{
+            mustVerifyEmail?: Boolean;
+            status?: String;
+            data:TData
+        }>();
 
 const user = usePage().props.auth.user;
 
 const form = useForm({
     name: user.name,
     email: user.email,
-    bio: user.bio,
-    avatar: user.avatar,
-    links-1: user.links-1,
-    links-2: user.links-2,
-    links-3: user.links-3,
-    links-4: user.links-4,
+    bio: data.bio,
+    avatar: data.avatar,
+    links_1: data.links_1,
+    links_2: data.links_2,
+    links_3: data.links_3,
+    links_4: data.links_4,
 });
 </script>
 
@@ -31,6 +40,7 @@ const form = useForm({
 
             <p class="mt-1 text-sm text-gray-600">
                 Update your account's profile information and email address.
+                {{user.}}
             </p>
         </header>
 

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
-            $table->string('links-1')->nullable();
-            $table->string('links-2')->nullable();
-            $table->string('links-3')->nullable();
-            $table->string('links-4')->nullable();
+            $table->string('links_1')->nullable();
+            $table->string('links_2')->nullable();
+            $table->string('links_3')->nullable();
+            $table->string('links_4')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
