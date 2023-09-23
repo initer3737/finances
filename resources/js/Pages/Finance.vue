@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { Link, router } from '@inertiajs/vue3'
-import Vue from 'vue'
+import Vue,{computed} from 'vue'
+import Icon from '@/Components/Icon.vue';
 const Udalit=(id:number)=>{
    const yakin= confirm('yakin mau delete');
    if(yakin === true){
         router.delete(`/finance/${id}`);
         setTimeout(()=>{
-            location.reload()
+            router.get('/');
         },1000)
    }
 }
-
-const is_empty=(e:any)=>e === null ?true:false;
 
         enum TType{
             membayar,
@@ -41,9 +40,11 @@ const is_empty=(e:any)=>e === null ?true:false;
     // const saldoColor=saldo < 0 ?"text-rose-600":"text-green-600";
     const {finance,email ,username, total_menerima,total_membayar,saldo}=props
     let number=1
+    computed(()=>props.finance)
 </script>
 <template>
 <div class="p-3">
+    <h2 class="text-end px-3 cursor-pointer" @click="router.visit('/dashboard')"> <Icon variant=" text-rose-500 text-xl" Icon="gear"> pengaturan</Icon> </h2>
     <h2>user : {{username}}</h2>
     <h2>email : {{ email }}</h2>
     <h2>total menerima : <span class="text-green-600">{{ total_menerima??'-' }}</span></h2>
