@@ -6,31 +6,44 @@ import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 type TData={
+    email:string,
+    name:string,
     bio:string,
     avatar:string,
     links_1:string,
     links_2:string,
     links_3:string,
     links_4:string,
+    email_verified_at:string,
+    created_at:string,
+    updated_at:string,
 }
-const {mustVerifyEmail,status,data}=defineProps<{
-            mustVerifyEmail?: Boolean;
-            status?: String;
-            data:TData
-        }>();
+// const props=defineProps<{
+//             data:TData
+//         }>();
 
-const user = usePage().props.auth.user;
+defineProps<{
+     data:TData;
+    mustVerifyEmail?: Boolean;
+    status?: String;
+}>()
 
-const form = useForm({
+const user:TData = usePage().props.auth.user;
+
+let form = useForm({
     name: user.name,
     email: user.email,
-    bio: data.bio,
-    avatar: data.avatar,
-    links_1: data.links_1,
-    links_2: data.links_2,
-    links_3: data.links_3,
-    links_4: data.links_4,
+    bio: user.bio,
+    // avatar: user.avatar,
+    links_1: user.links_1,
+    links_2: user.links_2,
+    links_3: user.links_3,
+    links_4: user.links_4,
 });
+
+// onMounted(()=>{
+//     form =user
+// })
 </script>
 
 <template>
@@ -77,7 +90,65 @@ const form = useForm({
             </div>
 
             <div>
-                <InputLabel for="bio" value="bio" />
+                <InputLabel for="links_1" value="links_1" />
+
+                <TextInput
+                    id="links_1"
+                    type="links_1"
+                    class="mt-1 block w-full"
+                    v-model="form.links_1"
+                    required
+                    autocomplete="username"
+                />
+
+                <InputError class="mt-2" :message="form.errors.links_1" />
+            </div>
+            <div>
+                <InputLabel for="links_2" value="links_2" />
+
+                <TextInput
+                    id="links_2"
+                    type="links_2"
+                    class="mt-1 block w-full"
+                    v-model="form.links_2"
+                    required
+                    autocomplete="username"
+                />
+
+                <InputError class="mt-2" :message="form.errors.links_2" />
+            </div>
+            <div>
+                <InputLabel for="links_3" value="links_3" />
+
+                <TextInput
+                    id="links_3"
+                    type="links_3"
+                    class="mt-1 block w-full"
+                    v-model="form.links_3"
+                    required
+                    autocomplete="username"
+                />
+
+                <InputError class="mt-2" :message="form.errors.links_3" />
+            </div>
+
+            <div>
+                <InputLabel for="links_4" value="links_4" />
+
+                <TextInput
+                    id="links_4"
+                    type="links_4"
+                    class="mt-1 block w-full"
+                    v-model="form.links_4"
+                    required
+                    autocomplete="username"
+                />
+
+                <InputError class="mt-2" :message="form.errors.links_4" />
+            </div>
+
+            <div>
+                <InputLabel for="bio" value="bio" class="text-small" />
 
                 <TextInput
                     id="bio"
@@ -85,7 +156,7 @@ const form = useForm({
                     class="mt-1 block w-full"
                     v-model="form.bio"
                     required
-                    autocomplete="username"
+                    autocomplete="bio"
                 />
 
                 <InputError class="mt-2" :message="form.errors.bio" />

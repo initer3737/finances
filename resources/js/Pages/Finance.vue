@@ -44,7 +44,7 @@ const Udalit=(id:number)=>{
 </script>
 <template>
 <div class="p-3">
-    <h2 class="text-end px-3 cursor-pointer" @click="router.visit('/dashboard')"> <Icon variant=" text-rose-500 text-xl" Icon="gear"> pengaturan</Icon> </h2>
+    <h2 class="text-end px-3 cursor-pointer" @click="router.visit('/profile')"> <Icon variant=" text-rose-500 text-xl" Icon="gear"> pengaturan</Icon> </h2>
     <h2>user : {{username}}</h2>
     <h2>email : {{ email }}</h2>
     <h2>total menerima : <span class="text-green-600">{{ total_menerima??'-' }}</span></h2>
