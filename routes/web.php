@@ -35,7 +35,7 @@ Route::get('/informatsiya', function () {
 });
 
 Route::get('/dashboard', function () {
-        $users=User::get()->map(function($query){
+        $users=User::with('Finance')->get()->map(function($query){
                 return [
                         "users"=>[
                             'id'=>$query->id,
@@ -49,10 +49,18 @@ Route::get('/dashboard', function () {
                             'links_4'=>$query->links_4,
                             'created_at'=>$query->created_at,
                             'updated_at'=>$query->updated_at,
-                        ]
+                        ],
+                        "finance"=>[[
+                            'id'=>$query->finance[0]->id,
+                            'amount'=>$query->finance[0]->amount,
+                            'keterangan'=>$query->finance[0]->keterangan,
+                            'type'=>$query->finance[0]->type,
+                            'created_at'=>$query->finance[0]->created_at,
+                            'updated_at'=>$query->finance[0]->updated_at,
+                        ]],
             ];
         });
-        //$users=User::with('Finance')->get();
+        // $users=User::with('Finance')->get();
     return Inertia::render('Dashboard',["users"=>$users]);
 
 })->middleware(['auth', 'verified'])->name('dashboard');

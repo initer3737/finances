@@ -28,13 +28,13 @@ defineProps<{
     status?: String;
 }>()
 
-const user:TData = usePage().props.auth.user;
+const user:TData | any = usePage().props.auth.user;
 
 let form = useForm({
     name: user.name,
     email: user.email,
     bio: user.bio,
-    // avatar: user.avatar,
+    avatar: user.avatar,
     links_1: user.links_1,
     links_2: user.links_2,
     links_3: user.links_3,

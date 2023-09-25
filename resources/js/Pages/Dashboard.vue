@@ -35,14 +35,15 @@ import { Head } from '@inertiajs/vue3';
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 flex flex-col">
                         <p class="text-xl text-center py-3">avatar : {{ users[0].users.avatar }}</p>
+                        <img class="w-[25vw] rounded shadow" :src="'/profile.png'" />
                         <p class="text-xl">name : {{ users[0].users.name }}</p>
                         <p class="text-xl">email : {{ users[0].users.email }}</p>
                         <p class="text-xl" v-show="users[0].users.bio != '' ">" {{ users[0].users.bio }} "</p>
-                        <div class="flex flex-col md:flex-row gap-4">
-                            <p class="text-xl">{{ users[0].users.links_1 }}</p>
-                            <p class="text-xl"> {{ users[0].users.links_2 }}</p>
-                            <p class="text-xl"> {{ users[0].users.links_3 }}</p>
-                            <p class="text-xl"> {{ users[0].users.links_4 }}</p>
+                        <div class="flex flex-col md:flex-row gap-4 py-3">
+                            <a :href="users[0].users.links_1" target="_blank" class="text-xl">{{users[0].users.links_1.split('/')[2].split('.')[0]}}</a>
+                            <a :href="users[0].users.links_2" target="_blank" class="text-xl">{{users[0].users.links_2.split('/')[2].split('.')[1]}}</a>
+                            <a :href="users[0].users.links_3" target="_blank" class="text-xl">{{users[0].users.links_3.split('/')[2].split('.')[0]}}</a>
+                            <a :href="users[0].users.links_4" target="_blank" class="text-xl">{{users[0].users.links_4.split('/')[2].split('.')[1]}}</a>
                         </div>
                     </div>
                 </div>
