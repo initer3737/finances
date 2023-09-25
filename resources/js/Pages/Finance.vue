@@ -17,7 +17,8 @@ const Udalit=(id:number)=>{
             menerima
         }
         type TFinance=[
-            {id:number,amount:number,type:string,keterangan:string}
+            {id:number,amount:number,type:string,keterangan:string
+            ,users:{timezone:string}}
         ]
     const props=withDefaults( defineProps<{
         // membayar?:number,
@@ -45,6 +46,7 @@ const Udalit=(id:number)=>{
 <template>
 <div class="p-3">
     <h2 class="text-end px-3 cursor-pointer" @click="router.visit('/profile')"> <Icon variant=" text-rose-500 text-xl" Icon="gear"> pengaturan</Icon> </h2>
+    <h2>timezone : {{finance?.[0].users.timezone}}</h2>
     <h2>user : {{username}}</h2>
     <h2>email : {{ email }}</h2>
     <h2>total menerima : <span class="text-green-600">{{ total_menerima??'-' }}</span></h2>
@@ -70,7 +72,7 @@ const Udalit=(id:number)=>{
         <tbody>
             <tr v-for="data in finance">
                  <td>{{ number++ }}</td>
-                 <td class="text-rose-600">{{ data.type === 'membayar' ? data.amount : '-' }}</td>
+                 <td class="text-rose-600">{{ data.type  === 'membayar' ? data.amount : '-' }}</td>
                  <td class="text-green-600">{{ data.type === 'menerima' ? data.amount : '-' }}</td>
                  <td>{{ data.keterangan.length < 5 ?data.keterangan: data.keterangan.substring(0,16)+'...' }}</td>
                  <td class="flex gap-4 justify-center items-center">

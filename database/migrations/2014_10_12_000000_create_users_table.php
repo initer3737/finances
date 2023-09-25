@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
+            $table->enum('timezone',['am','pm']);
             $table->string('links_1')->nullable();
             $table->string('links_2')->nullable();
             $table->string('links_3')->nullable();

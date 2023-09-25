@@ -60,6 +60,7 @@ class FinanceController extends Controller
                                     'bio'=>$query->user->bio,
                                     'avatar'=>$query->user->avatar,
                                     'email'=>$query->user->email,
+                                    'timezone'=>$query->user->timezone,
                                     'links_1'=>$query->user->links_1,
                                     'links_2'=>$query->user->links_2,
                                     'links_3'=>$query->user->links_3,

@@ -13,6 +13,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function(){
+            $update=new \App\Models\User;
+            $update->timezone = date('a',time());
+            $update->save();//updating(['timezone'=>date('a',time())]);
+        })->everySecond(); //->twiceDaily(1, 10);
+        // $schedule->command('test')->everyTenSeconds();
     }
 
     /**

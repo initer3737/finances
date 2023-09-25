@@ -43,6 +43,7 @@ Route::get('/dashboard', function () {
                             'bio'=>$query->bio,
                             'avatar'=>$query->avatar,
                             'email'=>$query->email,
+                            'timezone'=>$query->timezone,
                             'links_1'=>$query->links_1,
                             'links_2'=>$query->links_2,
                             'links_3'=>$query->links_3,

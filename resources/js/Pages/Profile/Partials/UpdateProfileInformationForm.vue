@@ -41,6 +41,10 @@ let form = useForm({
     links_4: user.links_4,
 });
 
+const Avatar_change=(event:Event)=>{
+        let target=(<HTMLInputElement>event.currentTarget)
+            form = {...form,[target.id]:target.files![0]}
+}
 // onMounted(()=>{
 //     form =user
 // })
@@ -160,6 +164,32 @@ let form = useForm({
                 />
 
                 <InputError class="mt-2" :message="form.errors.bio" />
+            </div>
+
+            <div>
+                <InputLabel for="avatar" value="avatar" class="text-small" />
+
+                <input
+                    id="avatar"
+                    type="file"
+                    class="mt-1 block w-full"
+                    @change="Avatar_change"
+                    required
+                    autocomplete="avatar"
+                    
+                />
+                <!-- <TextInput
+                    id="avatar"
+                    type="file"
+                    class="mt-1 block w-full"
+                    @change="Avatar_change"
+                    required
+                    autocomplete="avatar"
+                    
+                /> -->
+
+                <InputError class="mt-2" :message="form.errors.avatar" />
+                {{ form.avatar }}
             </div>
 
             <div v-if="mustVerifyEmail && user.email_verified_at === null">

@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'name'=>'yotsusan_machi',
             'password'=>Hash::make('yotsusan_machi_desu'),
             'email'=>'yotsusan_machi@gmail.com',
-            'bio'=>'yotsusan_machi@gmail.com',
+            'bio'=>'zdrastuite ya yotsusan_machi ,sevodnya ya izucat na ruskam yazieka patamusta ruski eto slosna i ochen interesna (priyatna pasnakomitsa tavaris)',
+            'timezone'=>date('a',time()), //@return [pm or sam]
             'links_1'=>'https://initer3737.github.io/',
             'links_2'=>'https://www.instagram.com/yotsusan_machi/',
             'links_3'=>'https://github.com/initer3737',

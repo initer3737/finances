@@ -9,6 +9,7 @@ import { Head } from '@inertiajs/vue3';
                 "bio": string, 
                 "avatar": string, 
                 "email": string, 
+                "timezone": string, 
                 "links_1": string, 
                 "links_2": string, 
                 "links_3": string, 
@@ -34,6 +35,7 @@ import { Head } from '@inertiajs/vue3';
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 flex flex-col">
+                        <p class="text-xl text-center py-3">timezone : {{ users[0].users.timezone }}</p>
                         <p class="text-xl text-center py-3">avatar : {{ users[0].users.avatar }}</p>
                         <img class="w-[25vw] rounded shadow" :src="'/profile.png'" />
                         <p class="text-xl">name : {{ users[0].users.name }}</p>
