@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
             // $update->timezone = date('a',time());
             // $update->save();//updating(['timezone'=>date('a',time())]);
             DB::table('users')->update(['timezone'=>date('a',time())]);
-        })->twiceDaily(1, 10);
+        })->twiceDaily(1, 13);
         // $schedule->command('test')->everyTenSeconds();
     }
 

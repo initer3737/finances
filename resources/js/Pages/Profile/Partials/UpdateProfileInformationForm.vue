@@ -4,6 +4,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { reactive } from 'vue';
 
 type TData={
     email:string,
@@ -30,20 +31,21 @@ defineProps<{
 
 const user:TData | any = usePage().props.auth.user;
 
-let form = useForm({
+let form = reactive(useForm({
     name: user.name,
     email: user.email,
     bio: user.bio,
-    avatar: user.avatar,
+    avatar: user.avatar??'',
     links_1: user.links_1,
     links_2: user.links_2,
     links_3: user.links_3,
     links_4: user.links_4,
-});
+}));
 
 const Avatar_change=(event:Event)=>{
         let target=(<HTMLInputElement>event.currentTarget)
             form = {...form,[target.id]:target.files![0]}
+            console.log(form)
 }
 // onMounted(()=>{
 //     form =user
@@ -173,7 +175,7 @@ const Avatar_change=(event:Event)=>{
                     id="avatar"
                     type="file"
                     class="mt-1 block w-full"
-                    @change="Avatar_change"
+                    v-on:change="Avatar_change"
                     required
                     autocomplete="avatar"
                     
