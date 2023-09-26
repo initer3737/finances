@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,10 +15,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function(){
-            $update=new \App\Models\User;
-            $update->timezone = date('a',time());
-            $update->save();//updating(['timezone'=>date('a',time())]);
-        })->everySecond(); //->twiceDaily(1, 10);
+            // $update=new \App\Models\User;
+            // $update->timezone = date('a',time());
+            // $update->save();//updating(['timezone'=>date('a',time())]);
+            DB::table('users')->update(['timezone'=>date('a',time())]);
+        })->twiceDaily(1, 10);
         // $schedule->command('test')->everyTenSeconds();
     }
 
